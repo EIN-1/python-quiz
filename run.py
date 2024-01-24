@@ -1,10 +1,9 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-#for changing text colors
+import colorama
 from colorama import Fore, Back, Style
 
 print("This is a fun quiz:")
+print("Welcome to the Python Quiz Game!")
+print("Please select the correct option for each question:\n")
 
 questions = [
     {
@@ -21,7 +20,7 @@ questions = [
     {
         "question": "What is the result of the following code snippet?",
         "code": ["x = 7", "print(x * 3)"],
-        "options": ["1) 8", "2) error", "3) 15", "4) 21"],
+        "options": ["1) 8", "2) error", "3) 15", "4) 21"],  
         "answer": 4
     },
     {
@@ -61,22 +60,27 @@ questions = [
     },
 ]
 
-score = 0
 
-print("Welcome to the Python Quiz Game!")
-print("Please select the correct option for each question:\n")
+def quiz(questions):
+    score = 0
+    for question in questions:
+        print(question["question"])
 
-for question in questions:
-  print(question["question"])
-  for option in question["options"]:
-    print(option)
-  answer = input(f"{Fore.BLUE}Your answer: ")
-  if int(answer) == question["answer"]:
-    print(f"{Fore.GREEN}Correct!{Fore.WHITE}")
-    score += 1
-  else:
-    print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
+        for option in question["options"]:
+            print(option)
+        try:
+            answer = input(f"{Fore.BLUE}Your answer: ")
+            if int(answer) == question["answer"]:
+                print(f"{Fore.GREEN}Correct!{Fore.WHITE}")
+                score += 1
+            else:
+                print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
+        except ValueError:
+            print("f"{Fore.RED}Please enter a valid number to your answer.{Fore.WHITE}")
+    print(f"\n{Fore.YELLOW}Quiz Completed!\n")
 
-print("\nQuiz Completed!")
-print(f"{Fore.BLUE}Your score: " + str(score) + f"{Fore.GREEN} out of " +
-      str(len(questions)) + f"{Fore.WHITE}")
+
+quiz(questions)
+
+print(f"{Fore.BLUE}Your score: " + str(score) + f"{Fore.GREEN} out of "
++ str(len(questions)) + f"{Fore.WHITE}")

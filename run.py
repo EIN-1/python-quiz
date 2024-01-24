@@ -1,9 +1,34 @@
 import colorama
 from colorama import Fore, Back, Style
 
-print("This is a fun quiz:")
+
 print("Welcome to the Python Quiz Game!")
 print("Please select the correct option for each question:\n")
+
+
+def quiz(questions):
+    score = 0
+    for question in questions:
+        print(question["question"])
+
+        for option in question["options"]:
+            print(option)
+        try:
+            answer = input(f"{Fore.BLUE}Your answer: {Style.RESET_ALL}")
+            if int(answer) == question["answer"]:
+                print(f"{Fore.GREEN}Correct!{Fore.WHITE}")
+                score += 1
+            else:
+                print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
+        except ValueError:
+            print(f"{Fore.RED}Error, please put a valid number.{Fore.WHITE}")
+
+    # This print statement ends the quiz and shows the final score.
+    print(f"{Fore.YELLOW}Quiz Completed!{Fore.WHITE}")
+    print(f"{Fore.BLUE}Your score: {score}{Fore.GREEN} out of {len(questions)}{Fore.WHITE}")
+
+
+# Example questions (this would be provided in the rest of your script)
 
 questions = [
     {
@@ -20,7 +45,7 @@ questions = [
     {
         "question": "What is the result of the following code snippet?",
         "code": ["x = 7", "print(x * 3)"],
-        "options": ["1) 8", "2) error", "3) 15", "4) 21"],  
+        "options": ["1) 8", "2) error", "3) 15", "4) 21"],
         "answer": 4
     },
     {
@@ -60,27 +85,5 @@ questions = [
     },
 ]
 
-
-def quiz(questions):
-    score = 0
-    for question in questions:
-        print(question["question"])
-
-        for option in question["options"]:
-            print(option)
-        try:
-            answer = input(f"{Fore.BLUE}Your answer: ")
-            if int(answer) == question["answer"]:
-                print(f"{Fore.GREEN}Correct!{Fore.WHITE}")
-                score += 1
-            else:
-                print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
-        except ValueError:
-            print("f"{Fore.RED}Please enter a valid number to your answer.{Fore.WHITE}")
-    print(f"\n{Fore.YELLOW}Quiz Completed!\n")
-
-
+# Run the quiz
 quiz(questions)
-
-print(f"{Fore.BLUE}Your score: " + str(score) + f"{Fore.GREEN} out of "
-+ str(len(questions)) + f"{Fore.WHITE}")

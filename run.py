@@ -24,7 +24,7 @@ def quiz(questions):
             print(f"{Fore.RED}Error, please put a valid number.{Fore.WHITE}")
 
     # This print statement ends the quiz and shows the final score.
-    print(f"{Fore.YELLOW}Quiz Completed!{Fore.WHITE}")
+    print(f"{Fore.YELLOW}Goodbye, you have Completed the Quiz!{Fore.WHITE}")
     print(f"{Fore.BLUE}Your score: {score}{Fore.GREEN} out of {len(questions)}{Fore.WHITE}")
 
 

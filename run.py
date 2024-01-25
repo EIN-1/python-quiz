@@ -37,9 +37,7 @@ def quiz(questions):
             else:
                 print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
             if len(value) != 1 or not value.isdigit():
-                raise ValueError(
-                    f" 1 number digit is required not str or {len(value)}"
-                    )
+                raise ValueError("1 number digit is required.")
         except ValueError as e:
             print(f"{Fore.RED} {e} Please put a valid number.{Fore.WHITE}")
 

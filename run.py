@@ -36,10 +36,10 @@ def quiz(questions):
                     score += 5
             else:
                 print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
-            if len(value) != 1 or not value.isdigit():
+            if len(answer) != 1 or not str(question["answer"]).isdigit():
                 raise ValueError("1 number digit is required.")
-        except ValueError:
-            print(f"{Fore.RED} Please put a valid number.{Fore.WHITE}")
+        except ValueError as e:
+            print(f"{Fore.RED} {e} Please put a valid number.{Fore.WHITE}")
 
     # This print statement ends the quiz and shows the final score.
     print(f"{Fore.YELLOW}Goodbye, you have Completed the Quiz!{Fore.WHITE}")

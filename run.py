@@ -1,11 +1,16 @@
+
 import colorama
+import time
 from colorama import Fore, Back, Style
 
+# introduction
+print(f"{Fore.GREEN}\nWelcome to the Python Quiz Game!\n{Fore.WHITE}")
+print(f"{Fore.BLUE}Please select the correct answer. For each question "
+      f"answered correctly within 15 seconds, you will earn 10 points. "
+      f"If it takes longer than that, you earn 5 points:{Fore.WHITE}\n\n")
 
-print("Welcome to the Python Quiz Game!")
-print("Please select the correct option for each question:\n")
 
-
+# define a function.
 def quiz(questions):
     score = 0
     for question in questions:
@@ -13,19 +18,35 @@ def quiz(questions):
 
         for option in question["options"]:
             print(option)
+        # Start the timer
+        start_time = time.time()
         try:
-            answer = input(f"{Fore.BLUE}Your answer: {Style.RESET_ALL}")
+            answer = input(f"{Fore.BLUE}Your answer: ")
+            # End the timer
+            end_time = time.time()
+            # Calculate elapsed time
+            elapsed_time = end_time - start_time
             if int(answer) == question["answer"]:
-                print(f"{Fore.GREEN}Correct!{Fore.WHITE}")
-                score += 1
+                # If the participant answers within 15 seconds
+                if elapsed_time <= 15:
+                    print(f"{Fore.GREEN}Correct! 10 points{Fore.WHITE}")
+                    score += 10
+                else:
+                    print(f"{Fore.GREEN}Correct! 5 points{Fore.WHITE}")
+                    score += 5
             else:
                 print(f"{Fore.RED}Incorrect!{Fore.WHITE}")
-        except ValueError:
-            print(f"{Fore.RED}Error, please put a valid number.{Fore.WHITE}")
+            if str or int(len(value)) != 1:
+                raise ValueError(
+                    f" 1 number digit is required not {len(value)}"
+                    )
+        except ValueError as e:
+            print(f"{Fore.RED} {e}, please put a valid number.{Fore.WHITE}")
 
     # This print statement ends the quiz and shows the final score.
     print(f"{Fore.YELLOW}Goodbye, you have Completed the Quiz!{Fore.WHITE}")
-    print(f"{Fore.BLUE}Your score: {score}{Fore.GREEN} out of {len(questions)}{Fore.WHITE}")
+    print(f"{Fore.BLUE}Your score: {score}{Fore.GREEN} \
+        out of {len(questions) * 10}{Fore.WHITE}")
 
 
 # Example questions (this would be provided in the rest of your script)
